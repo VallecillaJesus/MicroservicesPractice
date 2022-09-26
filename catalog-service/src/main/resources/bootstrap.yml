@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: catalog-service
+  cloud:
+    config:
+      fail-fast: true
+      discovery:
+        enabled: true
+        service-id: config-service
+  profiles:
+    active: dev
