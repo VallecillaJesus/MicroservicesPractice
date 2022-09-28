@@ -1,0 +1,51 @@
+version: "3.9"
+services:
+  rabbitmq:
+    image: rabbitmq:3.7.2-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+  zipkin:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+  eureka-service:
+    build: eureka-service
+    ports:
+      - "8761:8761"
+    restart: always
+  config-service:
+    build: config-service
+    ports:
+      - "8888:8888"
+    restart: always
+  api-gateway:
+    build: api-gateway
+    ports:
+      - "8080:8080"
+    restart: always
+  series-service:
+    build: serie-service
+    ports:
+      - "8086:8086"
+    restart: always
+  movie-service:
+    build: movie-service
+    ports:
+      - "8082:8082"
+    restart: always
+  catalog-service:
+    build: catalog-service
+    ports:
+      - "8083:8083"
+    restart: always
+  mongodb:
+    image: mongo
+    container_name: "mongodb"
+    command: mongod --auth
+    environment:
+      - MONGO_INITDB_DATABASE=admin
+      - MONGO_INITDB_ROOT_USERNAME=rootuser
+      - MONGO_INITDB_ROOT_PASSWORD=rootpass
+    ports:
+      - "27017:27017"

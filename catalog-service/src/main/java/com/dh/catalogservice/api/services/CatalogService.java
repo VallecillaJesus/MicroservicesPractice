@@ -43,8 +43,6 @@ public class CatalogService {
     }
 
     public Catalog findCatalogByGenreFallback(CallNotPermittedException exception){
-        System.out.println("CircuitBreaker opened");
-
         Catalog catalog = new Catalog();
         catalog.setId("Ups");
         catalog.setGenre(this.genre);
